@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aris网</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f7f2;
+        }
+        /* 固定导航栏部分 */
+        .fixed {
+            /*  */
+            z-index: 999;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background: linear-gradient(90deg, #48596b, #3498db);
+            padding: 5px 20px 0 0px;
+            /* gap: 15px; */
+        }
+        nav a {
+            font-size: 20px;
+            margin: 0 10px 0 0;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;  /* 强制手型 */
+
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: box-shadow 0.1s ease, transform 0.1s ease;
+        }
+        nav a.active {
+            box-shadow: inset 0 3px 6px rgba(195, 197, 202, 0.3);
+            
+            /* background-color: #e8e8e8; */
+            background: linear-gradient(180deg, #5a95ba, #10507b);
+            /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            transform: translateY(1px); */
+        }
+        #le {
+            margin-right: 40px;
+        }
+        .fixed p {
+            font-size: 20px;
+            padding: 0;
+            font-weight: 900;
+            font-family: 黑体;
+            /* 一下三行是文字渐变效果 */
+            background: linear-gradient(135deg, #ff6b35, #f7931e, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .fixed img {
+            width: 100px;
+            padding: 5px 0 0 0;
+        }
+        .fixed nav {
+            margin-left: auto;
+        }
+        /* 所有页面默认隐藏 */
+        .page {
+            display: none;
+            margin-top: 75px;
+        }
+        /* 首页默认显示 */
+        #home {
+            display: block;
+        }
+
+
+        /* 首页内容部分 */
+        .bor-min {
+            margin-left: 20px;
+            color: black;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .bor {
+            border: none;
+            border-left: 4px #284893 solid;
+            padding-left: 10px;
+            margin-left: 20px;
+            color: black;
+            font-weight: 800;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .der {
+            margin-left: 32px;
+            font-size: 17px;
+        }
+
+        /* 软件内容部分 */
+       .software-sp {
+        padding-top: 100px;
+        display: block;
+        text-align: center;
+       }
+
+       /* ==工具内容部分== */
+       #tools button {
+        display:inline-block;
+        margin: 30px 15px 15px 15px;
+        width: 250px;
+        height: 80px;
+        font-size: 20px;
+        font-weight: 800;
+        border-radius: 15px;
+        border:none;
+        background-color: #6fc5ff;
+        text-align: center;
+        /*  鼠标形状变为手势  */
+        cursor: pointer;
+       }
+    
+       /* ========== 📱 手机端适配（以下代码只在手机/小屏幕时生效，电脑端不受影响） ========== */
+       @media (max-width: 768px) {
+            /* 导航栏缩小：logo变小、隐藏"Aris 网"文字、链接变紧凑，保证手机宽度放得下 */
+            .fixed img { width: 50px; padding: 5px 0 0 0; }
+            .fixed p { display: none; }
+            .fixed { padding: 5px 8px 0 8px; }
+            nav a {
+                font-size: 14px;
+                margin: 0 4px 0 0;
+                padding: 6px 8px;
+            }
+            #le { margin-right: 10px; }
+
+            /* 首页文字边距缩小，贴合小屏幕 */
+            .bor { font-size: 17px; margin-left: 12px; }
+            .der { font-size: 15px; margin-left: 20px; }
+            .software-sp { padding-top: 40px; }
+
+            /* 工具按钮占满屏宽，方便手指点击 */
+            #tools button { width: 90%; margin: 15px 15px 15px 20px; }
+            /* #tools { text-align: center; } */
+       }
+       /* ========== 📱 手机端适配结束 ========== */
+    </style>
+</head>
+<body>
+    <!-- 固定导航栏内容部分 -->
+    <div id="full-page">
+        <div class="fixed">
+            <img src="img/Logo.png" alt="Aris网"> 
+            <p>Aris&nbsp;网</p> 
+            <nav>
+                <a data-target="home" class="active">首页</a>
+                <a data-target="code">编程</a>
+                <a data-target="software">软件</a>
+                <a data-target="tools" id="le">工具</a>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- 首页内容部分 -->
+    <div id="home" class="page" style="display: block;">
+        <div>
+            <p class="bor">🏠首页</p>
+            <hr style="margin-bottom: 40px ;">
+        </div>
+        <div>
+            <p class="bor-min">👤介绍站长</p>
+            <p class="der">站长是一名在校大一学生，请多多指教！</p>
+        </div>
+        <div>
+            <p class="bor-min">📚网站用途</p>
+            <p class="der">可以学习关于编程知识，主要用途为完成我期末考试作业^_^！</p>
+        </div>
+        <div>
+            <p class="bor-min">⏱️赶作业实况专栏</p>
+            <p class="der">不定期更新站长赶ddl实况，临时急救的代码小模块！</p>
+        </div>
+    </div>
+
+    <!-- 编程内容部分 -->
+    <div id="code" class="page">
+        <div>
+            <p class="bor">💻 编程学习</p>
+            <hr style="margin-bottom: 40px ;">
+            <span class="software-sp">暂无内容，期待后期！</span>
+        </div>
+        <script>
+            if (!localStorage.getItem('visited')) {
+                alert('推荐你使用 VS Code 编程：\nhttps://code.visualstudio.com/');
+                localStorage.setItem('visited', 'true');
+            }
+        </script>
+    </div>
+
+    <!-- 软件内容部分 -->
+    <div id="software" class="page">
+        <p class="bor">🛠️ 软件推荐</p>
+        <hr style="margin-bottom: 40px ;">
+        <span class="software-sp">暂无内容，期待后期！</span>
+    </div>
+
+    <!-- 工具内容部分 -->
+    <div id="tools" class="page">
+         <p class="bor">🔧 在线工具</p>
+         <hr style="margin-bottom: 40px ;">
+
+         <!-- =====图片压缩工具1====== -->
+         <button type="button" id="Tupian" class="but">图片压缩工具</button> 
+         <script>
+                const Tupian = document.getElementById('Tupian');
+                Tupian.addEventListener('click', function() {
+                     window.open('图片压缩工具.html');   //window.open是在新页面打开
+                });
+         </script>
+         
+         <!-- =======图片格式转换2======= -->
+          <button type="button" id="Geshi" class="but">图片格式转换</button>
+          <script>
+                const Geshi = document.getElementById('Geshi');
+                Geshi.addEventListener('click', function() {
+                     window.open('图片格式转换.html');   //window.open是在新页面打开
+                });
+         </script>
+
+         <!-- ========图片水印工具3=========== -->
+          <button type="button" id="Shuiyin" class="but">图片水印工具</button>
+          <script>
+                const Shuiyin = document.getElementById('Shuiyin');
+                Shuiyin.addEventListener('click', function() {
+                     window.open('图片水印工具.html');   //window.open是在新页面打开
+                });
+         </script>
+    </div>
+
+    <!-- script部分 -->
+     <script>
+         // 1. 获取所有导航链接（<a>标签）
+        const navLinks = document.querySelectorAll('nav a');
+           // 返回一个包含4个<a>元素的NodeList（首页、编程、软件、工具）
+
+          // 2. 获取所有内容页面（.page类的div）
+        const pages = document.querySelectorAll('.page');
+          // 返回包含4个<div>的NodeList（首页、编程、软件、工具的内容块）
+
+          // 3. 遍历每一个导航链接，绑定点击事件
+        navLinks.forEach(link => {
+            // link 是当前遍历到的那个<a>标签
+           link.addEventListener('click', function(e) {
+           // e 是事件对象，e.preventDefault()阻止<a>的默认跳转行为（#跳转）
+               e.preventDefault();
+
+             // ---- 第一步：移除所有链接的高亮 ----
+             // 遍历所有导航链接，把每个的active类都移除
+               navLinks.forEach(a => a.classList.remove('active'));
+             // 这样所有链接都变成非高亮状态
+
+             // ---- 第二步：给当前点击的链接添加高亮 ----
+             // this 指向当前触发事件的<a>元素（就是被点击的那个）
+             this.classList.add('active');
+             // 只有被点击的链接有active类，实现高亮效果
+
+              // ---- 第三步：隐藏所有内容页面 ----
+              // 遍历所有页面，把每个的display都设为none（隐藏）
+            pages.forEach(p => p.style.display = 'none');
+              // 这样所有内容区块都消失了
+
+              // ---- 第四步：显示目标页面 ----
+              // 获取当前点击链接的data-target属性值（如'home'、'code'）
+            const targetId = this.getAttribute('data-target');
+              // 根据id找到对应的页面div，把它的display设为block（显示）
+            document.getElementById(targetId).style.display = 'block';
+            // 这样就只显示被点击的那个页面
+            });
+        });
+     </script>
+</body>
+</html>

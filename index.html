@@ -1,0 +1,177 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 📱 手机端适配必备：让手机按真实宽度渲染，不加这行手机就会乱 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <style>
+        /* 鼠标形式 */
+        * {
+            cursor: default;
+        }
+        /* 跟上面同理 */
+        #username {
+            cursor: text;
+        }
+        body {
+            /* 蓝紫科技 */
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            /* 青蓝冷调 */
+            /* background: linear-gradient(135deg, #0c2340, #1a3a5c, #2d6a9f); */
+            /* 暗夜绿光 */
+            /* background: linear-gradient(135deg, #0a1f1a, #0d3b2e, #1a6b4a); */
+            /* 紫粉未来 */
+            /* background: linear-gradient(135deg, #1a0a2e, #2d1b4e, #5b2d8e); */
+        }
+        h1 {
+            text-align: center;
+            margin: 150px auto 0;
+            font-size: 100px;
+            color: #fff;
+        }
+        h2 {
+            text-align: center;
+            font-size: 28px;
+        }
+        #welcome {
+            width: 350px;
+            margin: 0 auto 0 auto;
+            padding: 5px;
+            background-color: #fff;
+            border-radius: 20px;
+            /* border: 2px solid #07c8ea; */
+            /* 阴影效果 */
+            box-shadow: 0 0 10px 0;
+        }
+        form {
+            font-size: 20px;
+        }
+        /* .long {
+            width: 100%;
+            padding: 5px;
+            margin: 5px auto;
+        } */
+        input {
+            /* display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px; */
+            margin: 10px;
+            padding: 8px;
+            border: 2px solid #3c78a9;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
+        button {
+            width: 99%;
+            padding: 7px;
+            margin: 15px auto 0;
+            background-color: rgb(3, 186, 227);
+            border-radius: 5px;
+            border: none;
+            font-size: 18px;
+            font-weight: 900;
+        }
+        /* 按钮变形效果 */
+        button:active {
+            transform: scale(0.95);
+        }
+        .form-item {
+            margin: 10px 0 10px 5px;
+        }
+        header h1 span {
+            font-weight: 900;
+            font-family: 黑体;
+            /* 一下三行是文字渐变效果 */
+            background: linear-gradient(135deg, #ff6b35, #f7931e, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .imgg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* ========== 📱 手机端适配（以下代码只在手机/小屏幕时生效，电脑端不受影响） ========== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: clamp(40px, 10vw, 60px);  /* 标题字号从100px自适应缩小 */
+                margin-top: 80px;                    /* 顶部间距也跟着缩小 */
+            }
+            h2 { font-size: 22px; }
+            #welcome {
+                width: min(90vw, 350px);   /* 卡片宽度：跟随屏幕宽度，最大350px */
+                box-sizing: border-box;
+            }
+            input {
+                width: 90%;                 /* 输入框撑开，不再挤成一团 */
+                box-sizing: border-box;
+            }
+            form { font-size: 17px; }
+        }
+        /* ========== 📱 手机端适配结束 ========== */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>欢迎来到&nbsp;<span>Aris网</span></h1>
+    </header>
+    <div class="imgg">
+        <img src="img/Logo.png" alt="Aris网" style="width: 200px;">
+    </div>
+    <div id="welcome">
+        <h2>请留下您的足迹</h2>
+        <form action="#" method="post">
+           <div class="form-item">
+              <label for="username">网名：</label>
+              <input type="text" id="username" name="username" maxlength="10">
+           </div> 
+           <div class="form-item">
+              <label for="sex">性别：</label>
+              <label><input class="sex" type="radio" name="sex" value="男">男</label>
+              <label><input class="sex" type="radio" name="sex" value="女">女</label>
+           </div>
+           <div class="form-item">
+              <label for="time" >访问时间：</label>
+              <!-- type="date"-是时间属性，年-月-日属性 -->
+              <input type="date" id="visitTime">
+              <!-- 用scrip来获取时间并自动输入，禁用属性，不能被改变 -->
+              <script>
+                window.onload = function() {
+                    let input = document.getElementById('visitTime');
+                    let now = new Date();
+                    let year = now.getFullYear();
+                    let month = String(now.getMonth() + 1).padStart(2, '0');
+                    let day = String(now.getDate()).padStart(2, '0');
+                    input.value = year + '-' + month + '-' + day;
+                    input.disabled = true;
+                };
+              </script>
+           </div>
+           <div class="form-item">
+              <button type="button" id="enterBtn">进&nbsp;入&nbsp;网&nbsp;页</button>
+              <script>
+                const enterBtn = document.getElementById('enterBtn');
+                enterBtn.addEventListener('click', function() {
+                    const username = document.getElementById('username').value;
+                    // const sex = document.getElementById('sex').value;
+                    const sex = document.querySelector('input[name="sex"]:checked');
+                    if(username === '' || !sex) {
+                        document.activeElement.blur(); //立即让按钮(进入网页这按钮)失去焦点（弹起）
+                        setTimeout(() => alert("网名或性别不能为空！"), 50); //50毫秒后才弹窗（有足够的时间让按钮弹回来）
+                    }else {
+                         window.location.href = '顶部导航栏-首页.html';
+                     }
+                })
+              </script>
+           </div>
+        </form>
+    </div>
+</body>
+</html>
