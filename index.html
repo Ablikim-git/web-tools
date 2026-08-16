@@ -170,6 +170,12 @@
                      }
                 })
               </script>
+               <!-- 不能使用手机访问网站 -->
+             <script>
+                    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                              document.body.innerHTML = '<h1 style="text-align:center;margin-top:50vh;font-size:24px;">请使用电脑浏览此网站</h1>';
+                    }
+             </script>
            </div>
         </form>
     </div>
